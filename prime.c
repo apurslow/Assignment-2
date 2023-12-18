@@ -66,6 +66,9 @@ void *worker(void *arg)
 
 int main (int argc, char * argv[])
 {
+  char prompt[100];
+  printf("PID=%d\nPress [ENTER] to continue\n",getpid());
+  scanf("%s",prompt);
   int prime_count = 50000;	// exceeding 50,000 is not recommended
   				// often will result in overrun of system resources for creating pthreads
   if (argc>1)
