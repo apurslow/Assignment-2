@@ -21,10 +21,27 @@
 #include <string.h>
 #include "buffer.h"
 
+//define the struct for the bounded buffer
+//implmentation using pthreads and bounded buffers
+//actually looked at buffer.h......
+
+
+
 // Initialize the bounded buffer
 //Memory should be allocated for the bounded buffer using malloc()
 void initbuff(int nslots, buffer_t *buff, char * n)
-{
+{ 
+  //pointer to contents of bounded buffer
+  buff ->buffer = (int *) malloc(nslots * sizeof(int));
+  //size of bounded buffer
+  buff-> maxSlots = nslots;
+  buff ->use_ptr = 0;
+  buff ->fill_ptr = 0;
+  buff ->name = n;
+  //initialize mutex
+  pthread_mutex_init(&buff->mutex, NULL);
+  //initialize condition variables
+  pthread_cond_init(&buff->cond, NULL);
 
 }
 
